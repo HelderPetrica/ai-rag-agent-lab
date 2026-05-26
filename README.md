@@ -1,5 +1,7 @@
 # AI RAG Agent Lab
 
+[![tests](https://github.com/HelderPetrica/ai-rag-agent-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/HelderPetrica/ai-rag-agent-lab/actions/workflows/tests.yml)
+
 Sanitized Python/FastAPI demo for document retrieval, vector-like search and agentic workflows.
 
 > Public portfolio demo. No proprietary code, no private prompts, no credentials, no client data, no production routes and no commercial rules.
