@@ -1,0 +1,4 @@
+Acme Operations Handbook describes a document review workflow for internal knowledge bases. The workflow starts with file ingestion, text normalization, chunking, deterministic embeddings, metadata capture and retrieval. The goal is to help teams ask questions about approved internal material without exposing private documents or credentials.
+
+The recommended production design separates ingestion, retrieval, answer generation and validation. This separation makes the system easier to test and safer to operate. A validation step should warn the user when retrieved context is weak, missing or inconsistent.
+

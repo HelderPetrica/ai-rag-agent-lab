@@ -1,0 +1,4 @@
+Northstar Analytics evaluates GenAI systems using traceable sources, structured logs and repeatable tests. A strong RAG service should include health checks, deterministic test fixtures, explicit metadata and clear boundaries between demo code and production integrations.
+
+In production, teams may replace in-memory storage with Postgres and pgvector, FAISS, Qdrant or Pinecone. They may also replace deterministic embeddings with provider models such as OpenAI, Gemini, Hugging Face or local transformer encoders. Secrets must stay outside the repository.
+

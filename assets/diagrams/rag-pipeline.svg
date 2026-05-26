@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520" role="img" aria-labelledby="title desc">
+  <title id="title">RAG agent pipeline</title>
+  <desc id="desc">Document input flows through ingestion, chunking, embeddings, retrieval, answering and validation.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 10; }
+      .agent { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; rx: 10; }
+      .store { fill: #ecfdf5; stroke: #059669; stroke-width: 2; rx: 10; }
+      .text { font-family: Arial, sans-serif; font-size: 18px; fill: #0f172a; font-weight: 700; }
+      .small { font-family: Arial, sans-serif; font-size: 13px; fill: #475569; }
+      .line { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1100" height="520"/>
+  <text x="50" y="48" class="text" style="font-size:28px">AI RAG Agent Lab - Retrieval Workflow</text>
+  <text x="50" y="76" class="small">Sanitized portfolio architecture with deterministic embeddings and agent boundaries</text>
+
+  <rect class="box" x="50" y="135" width="160" height="82"/>
+  <text class="text" x="74" y="170">Document</text>
+  <text class="small" x="74" y="194">sample or API text</text>
+
+  <rect class="agent" x="260" y="135" width="170" height="82"/>
+  <text class="text" x="284" y="170">Ingestion</text>
+  <text class="small" x="284" y="194">agent boundary</text>
+
+  <rect class="box" x="480" y="135" width="150" height="82"/>
+  <text class="text" x="512" y="170">Chunking</text>
+  <text class="small" x="512" y="194">overlap windows</text>
+
+  <rect class="box" x="680" y="135" width="170" height="82"/>
+  <text class="text" x="706" y="170">Embeddings</text>
+  <text class="small" x="706" y="194">local deterministic</text>
+
+  <rect class="store" x="900" y="135" width="150" height="82"/>
+  <text class="text" x="930" y="170">Store</text>
+  <text class="small" x="930" y="194">vectors + SQL metadata</text>
+
+  <rect class="box" x="50" y="325" width="160" height="82"/>
+  <text class="text" x="78" y="360">Question</text>
+  <text class="small" x="78" y="384">user query</text>
+
+  <rect class="agent" x="260" y="325" width="170" height="82"/>
+  <text class="text" x="286" y="360">Retrieval</text>
+  <text class="small" x="286" y="384">hybrid ranking</text>
+
+  <rect class="agent" x="480" y="325" width="150" height="82"/>
+  <text class="text" x="516" y="360">Answer</text>
+  <text class="small" x="516" y="384">grounded draft</text>
+
+  <rect class="agent" x="680" y="325" width="170" height="82"/>
+  <text class="text" x="708" y="360">Validation</text>
+  <text class="small" x="708" y="384">confidence + warnings</text>
+
+  <rect class="box" x="900" y="325" width="150" height="82"/>
+  <text class="text" x="928" y="360">JSON</text>
+  <text class="small" x="928" y="384">answer + sources</text>
+
+  <path class="line" d="M 210 176 L 260 176"/>
+  <path class="line" d="M 430 176 L 480 176"/>
+  <path class="line" d="M 630 176 L 680 176"/>
+  <path class="line" d="M 850 176 L 900 176"/>
+  <path class="line" d="M 210 366 L 260 366"/>
+  <path class="line" d="M 430 366 L 480 366"/>
+  <path class="line" d="M 630 366 L 680 366"/>
+  <path class="line" d="M 850 366 L 900 366"/>
+  <path class="line" d="M 975 217 C 975 260 390 262 390 325"/>
+</svg>
+
