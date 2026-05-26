@@ -38,9 +38,11 @@ class QueryResponse(BaseModel):
     sources: list[str]
     confidence: float
     warnings: list[str]
+    metadata: dict[str, str | int | float | bool]
 
 
 class HealthResponse(BaseModel):
     status: str
+    service: str
+    version: str
     indexed_chunks: int
-

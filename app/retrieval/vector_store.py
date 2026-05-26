@@ -54,10 +54,16 @@ class InMemoryVectorStore:
             )
         self._db.commit()
 
-    def search(self, query_embedding: list[float], top_k: int = 3) -> list[SearchResult]:
+    def search(
+        self,
+        query_embedding: list[float],
+        top_k: int = 3,
+        document_id: str | None = None,
+    ) -> list[SearchResult]:
         results = [
             SearchResult(chunk=chunk, score=cosine_similarity(query_embedding, chunk.embedding))
             for chunk in self._chunks.values()
+            if document_id is None or chunk.document_id == document_id
         ]
         return sorted(results, key=lambda item: item.score, reverse=True)[:top_k]
 
@@ -86,4 +92,3 @@ class InMemoryVectorStore:
             """
         )
         self._db.commit()
-

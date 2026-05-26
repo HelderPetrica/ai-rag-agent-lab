@@ -4,51 +4,47 @@ AI RAG Agent Lab is a compact document RAG service built to demonstrate clean Py
 
 ## Modularity Rule
 
-The project intentionally keeps Python files below 350 lines. This makes code review easier, reduces hidden coupling and forces each module to keep a clear responsibility. The current API orchestration, retrieval, ingestion, schema and agent layers are split for that reason.
+The project intentionally keeps Python files below 350 lines. This makes code review easier, reduces hidden coupling and forces each module to keep a clear responsibility.
 
 ## Pipeline
 
-1. Documents enter through `POST /documents/index` or through `sample_data/`.
+1. Documents enter through `POST /documents/index` or `sample_data/`.
 2. The ingestion agent normalizes each document into overlapping chunks.
 3. A deterministic embedding model converts chunks into stable numeric vectors.
-4. Chunks are stored in an in-memory vector store.
+4. Chunks are stored in an in-memory vector-like store.
 5. Metadata is stored in SQLite to demonstrate SQL-backed indexing boundaries.
 6. User questions go through a retrieval agent.
 7. Retrieval combines vector-like similarity with lexical overlap reranking.
 8. The answer agent creates a grounded response from retrieved chunks.
 9. The validation agent returns confidence and warnings.
 
-## Why Chunking Matters
+## Chunking
 
 Large documents are rarely useful as one retrieval unit. Chunking creates smaller evidence windows that can be ranked, cited and validated. Overlap reduces the risk of splitting relevant meaning across chunk boundaries.
 
-## Lexical Search vs Vector Search
+## Embeddings And Dense Retrieval
 
-Lexical search matches exact terms and is useful for precise keywords, identifiers and terminology. Vector search ranks by embedding similarity and can surface related content even when wording differs. This demo combines both ideas in a small hybrid search layer.
+The demo uses deterministic hashed embeddings so tests are reproducible and no API keys are required. This is not a production semantic model. In production, this layer could use OpenAI, Gemini, Hugging Face or local transformer embeddings.
+
+Dense retrieval ranks documents by vector similarity. A production implementation could use FAISS, Postgres with pgvector, Qdrant or Pinecone.
+
+## Hybrid Search And Reranking
+
+Lexical search is useful for exact terms. Vector search is useful when wording differs. The `HybridSearch` class combines both signals and returns a final score. In production, this layer could add BM25, cross-encoder reranking or domain-specific filters.
 
 ## Metadata
 
-Metadata makes retrieval auditable. Each chunk includes document id, source, chunk index and token count. In production, this layer commonly expands into tenant id, permissions, file hash, ingestion timestamp, parser version and retention policy.
+Metadata makes retrieval auditable. Each chunk includes document id, source, chunk index and token count. In production, this layer commonly expands into tenant id, permissions, file hash, parser version, ingestion timestamp and retention policy.
 
 ## Agent Boundaries
-
-The agent layer is deliberately simple:
 
 - `IngestionAgent` owns document preparation.
 - `RetrievalAgent` owns search behavior.
 - `AnswerAgent` owns response drafting.
 - `ValidationAgent` owns confidence and warnings.
 
-This split keeps each responsibility testable. It also mirrors how larger GenAI systems separate orchestration, retrieval, answer generation, guardrails and evaluation.
+The split keeps each step testable and avoids mixing parsing, retrieval, generation and validation in one large function.
 
-## Production Extensions
+## Why Validation Matters
 
-In production, the same architecture could use:
-
-- Postgres and pgvector for durable vector search.
-- FAISS, Qdrant or Pinecone for specialized retrieval.
-- LangChain, LlamaIndex or a custom orchestrator for multi-step workflows.
-- OpenAI, Gemini, Hugging Face or local LLMs for generation.
-- Structured traces, retrieval evaluation sets and prompt versioning.
-
-This repository keeps those integrations out of scope so it remains safe, portable and easy to review.
+RAG systems can fail silently when retrieval is weak. A validation step helps make uncertainty explicit through confidence and warnings. This demo keeps validation simple, but the boundary is ready for stronger checks such as citation coverage, entailment scoring or human review gates.

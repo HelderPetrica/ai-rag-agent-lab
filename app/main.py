@@ -69,10 +69,11 @@ app = FastAPI(
 
 
 @app.get("/")
-def root() -> dict[str, str]:
+def root() -> dict[str, str | bool]:
     return {
         "name": "AI RAG Agent Lab",
         "status": "ready",
+        "sanitized_demo": True,
         "description": "Sanitized FastAPI demo for document retrieval and agentic workflows.",
     }
 
@@ -80,7 +81,12 @@ def root() -> dict[str, str]:
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     state = _state()
-    return HealthResponse(status="ok", indexed_chunks=state.store.count())
+    return HealthResponse(
+        status="ok",
+        service=state.settings.app_name,
+        version=app.version,
+        indexed_chunks=state.store.count(),
+    )
 
 
 @app.post("/documents/index", response_model=IndexResponse)
@@ -110,6 +116,13 @@ def query(payload: QueryRequest) -> QueryResponse:
         sources=sorted({item.chunk.source for item in contexts}),
         confidence=confidence,
         warnings=warnings,
+        metadata={
+            "service": state.settings.app_name,
+            "top_k": payload.top_k,
+            "indexed_chunks": state.store.count(),
+            "retrieved_chunks": len(contexts),
+            "uses_external_llm": False,
+        },
     )
 
 
@@ -127,4 +140,3 @@ def _to_context(result: SearchResult) -> RetrievedContext:
         score=result.score,
         metadata=chunk.metadata,
     )
-
