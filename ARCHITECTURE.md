@@ -2,6 +2,10 @@
 
 AI RAG Agent Lab is a compact document RAG service built to demonstrate clean Python architecture, retrieval design and agent-style workflow separation.
 
+## Modularity Rule
+
+The project intentionally keeps Python files below 350 lines. This makes code review easier, reduces hidden coupling and forces each module to keep a clear responsibility. The current API orchestration, retrieval, ingestion, schema and agent layers are split for that reason.
+
 ## Pipeline
 
 1. Documents enter through `POST /documents/index` or through `sample_data/`.
@@ -48,4 +52,3 @@ In production, the same architecture could use:
 - Structured traces, retrieval evaluation sets and prompt versioning.
 
 This repository keeps those integrations out of scope so it remains safe, portable and easy to review.
-

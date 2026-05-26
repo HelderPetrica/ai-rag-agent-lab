@@ -25,6 +25,14 @@ This is a public portfolio demo. It does not include proprietary code, private p
 - pytest tests
 - Docker setup
 
+## Engineering Standards
+
+- Python modules are intentionally small and focused.
+- Source files stay well below 350 lines whenever possible.
+- Each agent owns one responsibility.
+- Retrieval, ingestion, schema, configuration and API orchestration are separated.
+- The code favors reviewability over framework magic.
+
 ## Architecture
 
 ```mermaid
