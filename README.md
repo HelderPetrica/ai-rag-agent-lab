@@ -7,7 +7,11 @@ Sanitized Python/FastAPI demo for document retrieval, vector-like search and age
 > Public portfolio demo. No proprietary code, no private prompts, no credentials, no client data, no production routes and no commercial rules.
 
 <p align="center">
-  <img src="assets/diagrams/architecture-overview.svg" alt="Architecture overview" width="850">
+  <img src="assets/diagrams/rag-agent-workflow-transparent.png" alt="RAG agent workflow illustration" width="900">
+</p>
+
+<p align="center">
+  <img src="assets/diagrams/architecture-overview.svg" alt="Architecture overview" width="760">
 </p>
 
 ## TL;DR For Recruiters / Tech Leads
