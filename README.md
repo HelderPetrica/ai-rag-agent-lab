@@ -6,6 +6,10 @@ Sanitized Python/FastAPI demo for document retrieval, vector-like search and age
 
 > Public portfolio demo. No proprietary code, no private prompts, no credentials, no client data, no production routes and no commercial rules.
 
+[![Live API](https://img.shields.io/badge/Live%20API-Cloud%20Run-blue)](https://ai-rag-agent-lab-demo-ees57vi2xa-uc.a.run.app)
+[![Swagger Docs](https://img.shields.io/badge/API%20Docs-Swagger-green)](https://ai-rag-agent-lab-demo-ees57vi2xa-uc.a.run.app/docs)
+[![Health Check](https://img.shields.io/badge/Health-OK-success)](https://ai-rag-agent-lab-demo-ees57vi2xa-uc.a.run.app/health)
+
 <p align="center">
   <img src="assets/diagrams/rag-agent-workflow-transparent.png" alt="RAG agent workflow illustration" width="900">
 </p>
@@ -95,6 +99,23 @@ uvicorn app.main:app --reload
 ```bash
 docker compose up --build
 ```
+
+## Live Demo
+
+[![Live API](https://img.shields.io/badge/Live%20API-Cloud%20Run-blue)](https://ai-rag-agent-lab-demo-ees57vi2xa-uc.a.run.app)
+[![Swagger Docs](https://img.shields.io/badge/API%20Docs-Swagger-green)](https://ai-rag-agent-lab-demo-ees57vi2xa-uc.a.run.app/docs)
+[![Health Check](https://img.shields.io/badge/Health-OK-success)](https://ai-rag-agent-lab-demo-ees57vi2xa-uc.a.run.app/health)
+
+## Cloud Run Deployment
+
+This public demo is deployed as a minimal Google Cloud Run service with:
+
+- no external LLM calls;
+- no secrets;
+- no real data;
+- min instances set to 0;
+- max instances limited to 1 for cost control;
+- synthetic sample data only.
 
 ## Example Curl Commands
 
